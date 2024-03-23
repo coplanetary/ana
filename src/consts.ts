@@ -2,4 +2,4 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "C@ AnA Wiki";
-export const SITE_DESCRIPTION = 'Category Theory and Anarchitecture';
+export const SITE_DESCRIPTION = 'Anarchitecture through the Categorial Kaleidoscope';
