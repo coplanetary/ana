@@ -86,7 +86,7 @@ export default defineConfig({
         },
       ],
       social: {
-        github: "https://github.com/mearashadowfax/CodeZen",
+        github: "https://github.com/risavkarna",
       },
       disable404Route: true,
       customCss: ["./src/assets/styles/starlight.css"],

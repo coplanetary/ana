@@ -30,7 +30,7 @@ const footerLinks = [
 const socialLinks = {
   facebook: "https://www.facebook.com/",
   x: "https://twitter.com/",
-  github: "https://github.com/mearashadowfax/CodeZen",
+  github: "https://github.com/risavkarna/CodeZen",
   google: "https://www.google.com/",
   slack: "https://slack.com/",
 };
