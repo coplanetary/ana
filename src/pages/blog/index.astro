@@ -23,7 +23,7 @@ const insightPosts: CollectionEntry<"insights">[] =
   await getCollection("insights");
 
 // Separate the most recent post from others
-const mostRecentPost: CollectionEntry<"blog"> = blogPosts[0];
+const mostRecentPost = blogPosts[0] as CollectionEntry<"blog">;
 const otherPosts: CollectionEntry<"blog">[] = blogPosts.slice(1);
 
 // Define variables for page content

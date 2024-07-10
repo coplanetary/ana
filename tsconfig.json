@@ -2,6 +2,7 @@
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "strictNullChecks": true,
+    "exactOptionalPropertyTypes": false,
     "types": ["bun-types"],
     "baseUrl": ".",
     "paths": {

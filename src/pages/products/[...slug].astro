@@ -171,7 +171,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
                           <table class="min-w-full divide-y divide-neutral-300 dark:divide-neutral-700">
                             <thead>
                               <tr>
-                                {product.data.tableData?.[0].feature?.map(
+                                {product?.data?.tableData[0]?.feature && product?.data?.tableData[0]?.feature?.map(
                                   (header) => (
                                     <th
                                       scope="col"
