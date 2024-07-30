@@ -77,8 +77,8 @@ export default defineConfig({
           ],
         },
         {
-          label: "Construction Services",
-          autogenerate: { directory: "construction" },
+          label: "Automation Services",
+          autogenerate: { directory: "automation" },
         },
         {
           label: "Advanced Topics",

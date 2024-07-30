@@ -13,7 +13,7 @@ const footerLinks = [
     links: [
       { name: "Documentation", url: "/fr/welcome-to-docs/" },
       { name: "Outils et Équipements", url: "/fr/products" },
-      { name: "Services de Construction", url: "/fr/services" },
+      { name: "Services de Automation", url: "/fr/services" },
     ],
   },
   {

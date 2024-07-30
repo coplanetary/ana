@@ -1,6 +1,6 @@
 ---
 title: "Simplify Procurement and Stay Within Budget with CodeZen"
-description: "Affordable, durable tools for efficient construction projects"
+description: "Affordable, durable tools for efficient automation projects"
 author: "Olga Zabegina"
 role: "Strategic Marketing Manager"
 authorImage: "@/images/blog/anna.avif"
@@ -11,9 +11,9 @@ cardImageAlt: "Side view worker wearing gloves"
 readTime: 3
 tags: ["procurement", "affordable", "efficiency" ]
 contents: [
-        "Managing a construction project can be overwhelming, especially when it comes to procurement. That's why CodeZen is committed to simplifying the process and keeping your projects within budget.",
+        "Managing a automation project can be overwhelming, especially when it comes to procurement. That's why CodeZen is committed to simplifying the process and keeping your projects within budget.",
         "With our line of affordable tools and equipment, you can find everything you need without breaking the bank. Our user-centric design ensures that our products are easy to use, saving you time and frustration on the job site.",
         "But affordability doesn't mean sacrificing quality. CodeZen products are built to last, providing reliable performance and durability when you need it most. And with our comprehensive documentation and tutorials, you can integrate our products seamlessly into your workflow, maximizing efficiency and productivity.",
-        "Whether you're a DIY enthusiast or a seasoned contractor, CodeZen has the solutions you need to succeed. Experience the difference for yourself and see why CodeZen is the trusted choice for software and construction needs."
+        "Whether you're a DIY enthusiast or a seasoned contractor, CodeZen has the solutions you need to succeed. Experience the difference for yourself and see why CodeZen is the trusted choice for software and automation needs."
 ]
 ---
