@@ -53,7 +53,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         >
           {product.data.title}
         </h1>
-        <p class="text-lg text-neutral-600 dark:text-neutral-400">
+        <p class="text-lg pt-2 text-neutral-600 dark:text-neutral-400">
           {product.data.description}
         </p>
       </div>
@@ -61,7 +61,7 @@ const pageTitle: string = `${product.data.title} | ${SITE.title}`;
         <Image
           id="fadeInMoveRight"
           src={product.data.main.imgMain}
-          class="w-[600px]"
+          class="w-[600px] rounded-md"
           alt={product.data.main.imgAlt}
           format={"avif"}
           loading={"eager"}
