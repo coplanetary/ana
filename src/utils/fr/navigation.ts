@@ -1,26 +1,26 @@
 
 const navBarLinks = [
-  { name: "Accueil", url: "/fr" },
-  { name: "Produits", url: "/fr/products" },
-  { name: "Services", url: "/fr/services" },
-  { name: "Blog", url: "/fr/blog" },
-  { name: "Contact", url: "/fr/contact" },
+  { name: "Accueil", url: "/" },
+  { name: "Produits", url: "/products" },
+  { name: "Services", url: "/services" },
+  { name: "Blog", url: "/blog" },
+  { name: "Contact", url: "/contact" },
 ];
 
 const footerLinks = [
   {
     section: "Écosystème",
     links: [
-      { name: "Documentation", url: "/fr/welcome-to-docs/" },
-      { name: "Outils et Équipements", url: "/fr/products" },
-      { name: "Services de Automation", url: "/fr/services" },
+      { name: "Documentation", url: "/welcome-to-docs/" },
+      { name: "Outils et Équipements", url: "/products" },
+      { name: "Services de Automation", url: "/services" },
     ],
   },
   {
     section: "Société",
     links: [
       { name: "À propos de nous", url: "#" },
-      { name: "Blog", url: "/fr/blog" },
+      { name: "Blog", url: "/blog" },
       { name: "Carrières", url: "#" },
       { name: "Clients", url: "#" },
     ],
@@ -30,7 +30,7 @@ const footerLinks = [
 const socialLinks = {
   facebook: "#",
   x: "#",
-  github: "https://github.com/risavkarna/CodeZen",
+  github: "https://github.com/risavkarna",
   google: "#",
   slack: "#",
 };

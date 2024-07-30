@@ -8,7 +8,6 @@ import HeroSection from '@components/sections/landing/HeroSection.astro';
 import HeroSectionAlt from '@components/sections/landing/HeroSectionAlt.astro';
 import PricingSection from '@components/sections/pricing/PricingSection.astro';
 import TestimonialsSection from '@components/sections/testimonials/TestimonialsSection.astro';
-import AnnouncementBanner from '@components/ui/banners/AnnouncementBanner.astro';
 import faqs from '@data/faqs.json';
 import features from '@data/features.json';
 import pricing from '@data/pricing.json';
@@ -20,20 +19,13 @@ import automation from '@images/blueprints-2.avif';
 import dashboard from '@images/dashboard-image.avif';
 import tools from '@images/formly-survey-results.jpeg';
 import heroImage from '@images/prism-xl.jpeg';
-import heroImage2 from '@images/card-management.jpeg';
 
 const avatarSrcs: Array<ImageMetadata> = [src4, src3, src2, src1];
 ---
 
 <MainLayout>
-  <AnnouncementBanner
-    btnId="dismiss-button"
-    btnTitle="Explore more power tools:"
-    url="https://github.com/risavkarna/"
-  />
-
   <HeroSection
-    title=`Equip Your Projects with <span
+    title=`Accelerate Your Projects with <span
         class="text-yellow-500 dark:text-yellow-400">CodeZen</span>`
     subTitle="Top-quality code-automation tools and expert consultation services for every project need."
     primaryBtn="Explore"
@@ -79,20 +71,44 @@ const avatarSrcs: Array<ImageMetadata> = [src4, src3, src2, src1];
       },
     ]}
   />
-  <FeaturesGeneral
-    title="Meeting Industry Demands"
-    subTitle="At CodeZen, we tackle the unique challenges encountered in the software and technological realms. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
-    src={heroImage2}
-    alt="CodeZen products in floating boxes"
-    features={features}
-  />
 
-  <HeroSectionAlt
-    title="Let's Build Together"
-    subTitle="CodeZen is an open-source automation tool, meticulously crafted with state-of-the-art OSS frameworks. Contact us if you would like to contribute or request a feature."
-    url="https://github.com/risasvkarna"
-  />
+  <FAQ title="Frequently Asked <br /> Questions" faqs={faqs} />
 
+  <TestimonialsSection
+    title="Fast-Track Your Projects"
+    subTitle="At CodeZen, we ensure a swift start with instant account setup. Experience the speed of automation redefined."
+    ;
+    testimonials={[
+      {
+        content:
+          'CodeZen dramatically boosted our project efficiency. Setup was instant, and their rapid response times are phenomenal. Truly a game-changer in software and automation support!',
+        author: 'Nitesh Kumar',
+        role: 'Chief Operating Officer | GAPL Pvt Ltd.',
+        avatarSrc: src4,
+      },
+    ]}
+    statistics={[
+      {
+        count: '700k+',
+        description:
+          'lines of code reduced across major software development projects',
+      },
+      {
+        count: '65%',
+        description:
+          'reduction in project timelines by implementing our generators',
+      },
+      {
+        count: '0 hrs',
+        description:
+          'time wasted in configuring CRUD servers/persistence & dashboards',
+      },
+      {
+        count: '10x',
+        description: 'quicker assembly using intuitive automation solutions',
+      },
+    ]}
+  />
 
   <!-- <ClientsSection
     title="Trusted by Industry Leaders"
@@ -101,43 +117,15 @@ const avatarSrcs: Array<ImageMetadata> = [src4, src3, src2, src1];
 
   <PricingSection pricing={pricing} />
 
-  <FAQ title="Frequently<br />asked questions" faqs={faqs} />
+  <FeaturesGeneral
+    title="Meeting Industry Demands"
+    subTitle="At CodeZen, we tackle the unique challenges encountered in the software and technological realms. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals."
+    features={features}
+  />
 
-  <TestimonialsSection
-  title="Fast-Track Your Projects"
-  subTitle="At CodeZen, we ensure a swift start with instant account setup. Experience the speed of automation redefined."
-  ;
-  testimonials={[
-    {
-      content:
-        'CodeZen dramatically boosted our project efficiency. Setup was instant, and their rapid response times are phenomenal. Truly a game-changer in software and automation support!',
-      author: 'Samantha Ruiz',
-      role: 'Chief Operating Officer | ConstructIt Inc.',
-      avatarSrc:
-        'https://images.unsplash.com/photo-1593104547489-5cfb3839a3b5?q=80&w=1453&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80',
-    },
-  ]}
-  statistics={[
-    {
-      count: '70k+',
-      description:
-        'customers equipped — from DIY to major automation firms',
-    },
-    {
-      count: '35%',
-      description:
-        'uptick in project efficiency with CodeZen tools and services',
-    },
-    {
-      count: '15.3%',
-      description:
-        'reduction in maintenance costs reported by long-term clients',
-    },
-    {
-      count: '2x',
-      description: 'quicker assembly using innovative fastening solutions',
-    },
-  ]}
-/>
-
+  <HeroSectionAlt
+    title="Let's Collaborate!"
+    subTitle="CodeZen is an open-source automation tool, meticulously crafted with state-of-the-art OSS frameworks. Contact us if you would like to contribute or request a feature."
+    url="https://github.com/risasvkarna"
+  />
 </MainLayout>

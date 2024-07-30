@@ -7,8 +7,8 @@
 
   "starterKit": {
     "name": "Starter Kit",
-    "description": "Best option for DIY projects",
-    "price": "$49",
+    "description": "Best option for DIY/SMEs",
+    "price": "$9",
     "cents": ".00",
     "billingFrequency": "USD / monthly",
     "features": [
@@ -17,7 +17,7 @@
       "Standard support"
     ],
     "purchaseBtnTitle": "Get the Starter Kit",
-    "purchaseLink": "#"
+    "purchaseLink": "mailto:starter@risav.dev"
   },
 
   "professionalToolbox": {
@@ -33,6 +33,6 @@
       "Bulk order discounts"
     ],
     "purchaseBtnTitle": "Get the Professional Toolbox",
-    "purchaseLink": "#"
+    "purchaseLink": "mailto:professional@risav.dev"
   }
 }
