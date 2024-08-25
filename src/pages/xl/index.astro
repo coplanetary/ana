@@ -1,63 +1,14 @@
 ---
 // Importing necessary components
-import MainLayout from "@/layouts/MainLayout.astro";
-import PrimaryCTA from "@components/ui/buttons/PrimaryCTA.astro";
-import CardSmall from "@components/ui/cards/CardSmall.astro";
-import CardWide from "@components/ui/cards/CardWide.astro";
-import FeaturesStatsAlt from "@components/sections/features/FeaturesStatsAlt.astro";
-import TestimonialsSectionAlt from "@components/sections/testimonials/TestimonialsSectionAlt.astro";
+import MainLayout from '@/layouts/MainLayout.astro';
 
 // Importing necessary functions from Astro
-import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-import { SITE } from "@data/constants";
-
-// Fetching all the product related content and sorting it by main.id
-const product: CollectionEntry<"products">[] = (
-  await getCollection("products")
-).sort(
-  (a: CollectionEntry<"products">, b: CollectionEntry<"products">) =>
-    a.data.main.id - b.data.main.id,
-);
+import { SITE } from '@data/constants';
 
 // Define variables for page content
-const title: string = "Products";
+const title: string = 'PrismXL';
 const subTitle: string =
-  "Explore the durability and precision of CodeZen tools, designed for both professionals and enthusiasts. Each of our products is crafted with precision and built to last, ensuring you have the right tool for every job.";
-
-// Testimonial data that will be rendered in the component
-const testimonials = [
-  // First testimonial data
-  {
-    content:
-      " \"Since switching to CodeZen's software tools, the efficiency on our automation sites has skyrocketed. The durability of the hex bolts and precision of the machine screws are simply unmatched. It's refreshing to work with a company that truly understands the daily demands of the industry.\" ",
-    author: "Jason Clark",
-    role: "Site Foreman | TopBuild",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Image Description",
-  },
-  // Second testimonial data
-  {
-    content:
-      " \"As an interior designer, I'm always looking for high-quality materials and tools that help bring my visions to life. CodeZen's mixed screws assortment has been a game-changer for my projects, providing the perfect blend of quality and variety. The outstanding customer support was just the cherry on top!\" ",
-    author: "Maria Gonzalez",
-    role: "Interior Designer | Creative Spaces",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1376&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Image Description",
-  },
-  // Third testimonial data
-  {
-    content:
-      " \"I’ve been a professional carpenter for over 15 years, and I can sincerely say that CodeZen’s tap bolts and nuts are some of the best I've used. They grip like no other, and I have full confidence in every joint and fixture. Plus, the service is impeccable – they truly care about my project's success.\" ",
-    author: "Richard Kim",
-    role: "Master Carpenter | WoodWright",
-    avatarSrc:
-      "https://images.unsplash.com/photo-1474176857210-7287d38d27c6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80",
-    avatarAlt: "Image Description",
-  },
-];
+  'Upload an excel file and get a visual representation of the data.';
 
 const pageTitle: string = `Products | ${SITE.title}`;
 ---
@@ -65,19 +16,21 @@ const pageTitle: string = `Products | ${SITE.title}`;
 <MainLayout
   title={pageTitle}
   structuredData={{
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://nep.work/products",
-    "url": "https://nep.work/products",
-    "name": "Software Tools | CodeZen",
-    "description": "Explore the durability and precision of CodeZen tools, designed for both professionals and enthusiasts.",
-    "isPartOf": {
-      "@type": "WebSite",
-      "url": "https://nep.work",
-      "name": "CodeZen",
-      "description": "CodeZen offers top-tier software tools and expert automation services to meet all your project needs."
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://nep.work/xl',
+    url: 'https://nep.work/xl',
+    name: 'Software Tools | CodeZen',
+    description:
+      'Explore the durability and precision of CodeZen tools, designed for both professionals and enthusiasts.',
+    isPartOf: {
+      '@type': 'WebSite',
+      url: 'https://nep.work',
+      name: 'CodeZen',
+      description:
+        'CodeZen offers top-tier software tools and expert automation services to meet all your project needs.',
     },
-    "inLanguage": "en-US"
+    inLanguage: 'en-US',
   }}
 >
   <div
@@ -98,36 +51,197 @@ const pageTitle: string = `Products | ${SITE.title}`;
           )
         }
       </div>
-      <PrimaryCTA title="Customer Stories" url="#testimonials" noArrow={true} />
+      <div id="excel-uploader">
+        <input type="file" id="excel-file" accept=".xlsx, .xls, .xlsm" />
+        <button id="upload-btn">Excel Upload</button>
+      </div>
     </div>
-    <!--Displaying products in alternating styles. Alternative product gets different card styling.-->
-    <!--Maps through all product entries and displays them with either CardSmall or CardWide based on their position.-->
-    <section class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:gap-6 xl:gap-8">
-      {
-        product.map((product, index) => {
-          const position = index % 4;
-          if (position === 0 || position === 3) {
-            return <CardSmall product={product} />;
-          } else {
-            return <CardWide product={product} />;
-          }
-        })
-      }
-    </section>
   </div>
-  <!--Features statistics section-->
-  <FeaturesStatsAlt
-    title="Why Choose CodeZen?"
-    subTitle="Transform your ideas into tangible results with CodeZen tools. Whether you're starting with a sketch on a napkin or diving into a comprehensive automation project, our tools are engineered to help you build with confidence."
-    benefits={[
-      "Robust and reliable tools for long-lasting performance.",
-      "Innovative solutions tailored to modern automation needs.",
-      "Customer support dedicated to your project's success.",
-    ]}
-  />
-  <!--Testimonials section-->
-  <TestimonialsSectionAlt
-    title="What Our Customers Say"
-    testimonials={testimonials}
-  />
+  <div id="sheet-menu">Sheet Menu</div>
+  <div id="output"></div>
 </MainLayout>
+
+<style>
+  #sheet-menu {
+    margin-top: 20px;
+  }
+  .sheet-button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  import * as XLSX from 'xlsx';
+
+  interface CellData {
+    value: any;
+    comment?: string;
+  }
+
+  interface ParsedExcelData {
+    sheetNames: string[];
+    sheets: {
+      [sheetName: string]: CellData[][];
+    };
+    formulas: {
+      [sheetName: string]: {
+        [coordinate: string]: string;
+      };
+    };
+  }
+
+  const fileInput = document.getElementById(
+    'excel-file'
+  ) as HTMLInputElement | null;
+  const uploadBtn = document.getElementById(
+    'upload-btn'
+  ) as HTMLButtonElement | null;
+  const sheetMenu = document.getElementById(
+    'sheet-menu'
+  ) as HTMLDivElement | null;
+  const output = document.getElementById('output') as HTMLDivElement | null;
+
+  let parsedData: ParsedExcelData | null = null;
+
+  if (fileInput && uploadBtn && sheetMenu && output) {
+    uploadBtn.addEventListener('click', () => {
+      const file = fileInput.files?.[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target?.result) {
+            const data = new Uint8Array(e.target.result as ArrayBuffer);
+            const workbook = XLSX.read(data, { type: 'array' });
+
+            parsedData = {
+              sheetNames: workbook.SheetNames,
+              sheets: {},
+              formulas: {},
+            };
+
+            workbook.SheetNames.forEach((sheetName) => {
+              const sheet = workbook.Sheets[sheetName];
+              const range = XLSX.utils.decode_range(sheet['!ref'] || 'A1');
+              const sheetData: CellData[][] = [];
+              parsedData!.formulas[sheetName] = {};
+
+              for (let R = range.s.r; R <= range.e.r; ++R) {
+                const row: CellData[] = [];
+                for (let C = range.s.c; C <= range.e.c; ++C) {
+                  const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+                  const cell = sheet[cellAddress];
+                  const cellData: CellData = {
+                    value: cell ? cell.v : undefined,
+                  };
+
+                  if (cell && cell.f) {
+                    parsedData!.formulas[sheetName][cellAddress] = cell.f;
+                  }
+
+                  if (cell && cell.c && cell.c[0]) {
+                    cellData.comment = cell.c[0].t;
+                  }
+
+                  row.push(cellData);
+                }
+                sheetData.push(row);
+              }
+
+              parsedData!.sheets[sheetName] = sheetData;
+            });
+
+            displaySheetMenu();
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        output.textContent = 'Please select a file';
+      }
+    });
+  } else {
+    console.error('One or more required elements not found');
+  }
+
+  function displaySheetMenu() {
+    if (sheetMenu && parsedData) {
+      sheetMenu.innerHTML = '';
+      parsedData.sheetNames.forEach((sheetName) => {
+        const button = document.createElement('button');
+        button.textContent = sheetName;
+        button.classList.add('sheet-button');
+        button.addEventListener('click', () => displaySheetDataAsTable(sheetName));
+        sheetMenu.appendChild(button);
+      });
+    }
+  }
+
+  function displaySheetData(sheetName: string) {
+    if (output && parsedData) {
+      const sheetData = parsedData.sheets[sheetName];
+      const formulas = parsedData.formulas[sheetName];
+      const displayData = {
+        values: sheetData,
+        formulas: formulas,
+      };
+      output.textContent = JSON.stringify(displayData, null, 2);
+    }
+  }
+
+  function displaySheetDataAsTable(sheetName: string) {
+    if (output && parsedData) {
+      const sheetData = parsedData.sheets[sheetName];
+      const formulas = parsedData.formulas[sheetName];
+
+      // Create table for sheet data
+      let tableHtml = '<h2>' + sheetName + '</h2>';
+      tableHtml += '<table class="sheet-data">';
+
+      // Table headers (A, B, C, ...)
+      tableHtml += '<tr><th></th>';
+      if (sheetData && sheetData[0]) {
+        for (let i = 0; i < sheetData[0].length; i++) {
+          tableHtml += '<th>' + String.fromCharCode(65 + i) + '</th>'; // A, B, C, ...
+        }
+        tableHtml += '</tr>';
+      }
+
+      // Table rows
+      sheetData?.forEach((row, rowIndex) => {
+        tableHtml += '<tr>';
+        tableHtml += '<th>' + (rowIndex + 1) + '</th>'; // Row numbers
+        row.forEach((cell, colIndex) => {
+          const cellAddress =
+            String.fromCharCode(65 + colIndex) + (rowIndex + 1);
+          let cellContent = cell.value !== undefined ? cell.value : '';
+          if (cell.comment) {
+            cellContent +=
+              '<span class="comment" title="' + cell.comment + '">📝</span>';
+          }
+          if (formulas && formulas[cellAddress]) {
+            cellContent +=
+              '<span class="formula" title="' +
+              formulas[cellAddress] +
+              '">ƒx</span>';
+          }
+          tableHtml += '<td>' + cellContent + '</td>';
+        });
+        tableHtml += '</tr>';
+      });
+
+      tableHtml += '</table>';
+
+      // Display formulas
+      tableHtml += '<h3>Formulas</h3>';
+      tableHtml += '<ul class="formula-list">';
+      for (const [cellAddress, formula] of Object.entries(formulas || {})) {
+        tableHtml +=
+          '<li><strong>' + cellAddress + ':</strong> ' + formula + '</li>';
+      }
+      tableHtml += '</ul>';
+
+      output.innerHTML = tableHtml;
+    }
+  }
+</script>

@@ -12,6 +12,11 @@ export default defineConfig({
   image: {
     domains: ["images.unsplash.com"],
   },
+  vite: {
+    optimizeDeps: {
+      include: ["xlsx", "hot-formula-parser"],
+    },
+  },
   // i18n: {
   //   defaultLocale: "en",
   //   locales: ["en", "fr"],
