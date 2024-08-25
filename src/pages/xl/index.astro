@@ -70,6 +70,38 @@ const pageTitle: string = `Products | ${SITE.title}`;
     padding: 5px 10px;
     cursor: pointer;
   }
+  .sheet-data {
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .sheet-data th,
+  .sheet-data td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  .sheet-data th {
+    background-color: #f2f2f2;
+  }
+  .comment,
+  .formula {
+    font-size: 0.8em;
+    margin-left: 5px;
+    cursor: help;
+  }
+  .comment {
+    color: green;
+  }
+  .formula {
+    color: blue;
+  }
+  .formula-list {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .formula-list li {
+    margin-bottom: 5px;
+  }
 </style>
 
 <script>
@@ -171,7 +203,9 @@ const pageTitle: string = `Products | ${SITE.title}`;
         const button = document.createElement('button');
         button.textContent = sheetName;
         button.classList.add('sheet-button');
-        button.addEventListener('click', () => displaySheetDataAsTable(sheetName));
+        button.addEventListener('click', () =>
+          displaySheetDataAsTable(sheetName)
+        );
         sheetMenu.appendChild(button);
       });
     }
@@ -223,7 +257,7 @@ const pageTitle: string = `Products | ${SITE.title}`;
             cellContent +=
               '<span class="formula" title="' +
               formulas[cellAddress] +
-              '">ƒx</span>';
+              '">fx</span>';
           }
           tableHtml += '<td>' + cellContent + '</td>';
         });
