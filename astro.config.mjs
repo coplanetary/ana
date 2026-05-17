@@ -27,6 +27,9 @@ export default defineConfig({
   //     prefixDefaultLocale: false,
   //   },
   // },
+  redirects: {
+    "/diabetes": "/the-diabetes-app",
+  },
   prefetch: true,
   integrations: [
     tailwind(),

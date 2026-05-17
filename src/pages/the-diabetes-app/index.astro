@@ -1,0 +1,389 @@
+---
+import MainLayout from "@/layouts/MainLayout.astro";
+import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
+import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
+import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
+import FAQ from "@components/sections/FAQ.astro";
+import { SITE } from "@data/constants";
+import logbookImg from "@images/diabetes/app-logbook.jpg";
+import dashboardImg from "@images/diabetes/app-dashboard.webp";
+import reportImg from "@images/diabetes/app-report.webp";
+
+const pageTitle = `The Diabetes App | ${SITE.title}`;
+
+const features = [
+  {
+    heading: "Daily Logging",
+    content:
+      "Log blood glucose, insulin, carbs, medications, and exercise in seconds. Every entry stays on your device. No accounts, no cloud uploads.",
+    svg: "dashboard",
+  },
+  {
+    heading: "100% Offline",
+    content:
+      "Bolus calculators, reminders, and all your logs work with zero cell service. Hiking, traveling, camping somewhere remote. It keeps working.",
+    svg: "earth",
+  },
+  {
+    heading: "On-Device AI",
+    content:
+      "An AI assistant that runs entirely on your phone. Ask about carb counts, spot trends in your data, and get insights. No internet needed.",
+    svg: "tools",
+  },
+  {
+    heading: "Trust Network",
+    content:
+      "Share logs securely with family, caregivers, and doctors via direct phone-to-phone connections. No tech company sits in the middle of your care.",
+    svg: "groups",
+  },
+  {
+    heading: "Plugin Marketplace",
+    content:
+      "Customize your app with verified plugins from diabetes coaches, gym trainers, and trusted partners. Your diabetes is yours. Your app should match.",
+    svg: "books",
+  },
+  {
+    heading: "Privacy-First Research",
+    content:
+      "Opt in to contribute anonymized, stripped data to diabetes research. Help find a cure on your own terms, with full control over what you share.",
+    svg: "verified",
+  },
+];
+
+const faqs = {
+  subTitle:
+    "Can't find what you're looking for? Reach out to the community and we'll get back to you.",
+  faqs: [
+    {
+      question: "Will the app really work with no internet connection?",
+      answer:
+        "Yes. The core experience runs entirely on-device: logging, bolus calculator, medication reminders, and the AI assistant. Internet is only used for optional features like syncing with your Trust Network or updating plugins.",
+    },
+    {
+      question: "How does the on-device AI work without the cloud?",
+      answer:
+        "We use lightweight, quantized language models that run directly on modern smartphone hardware. Because the model lives on your phone, your health questions and personal data never leave your device. The AI also learns your individual patterns over time from your local data.",
+    },
+    {
+      question: "What is the Trust Network?",
+      answer:
+        "The Trust Network lets you invite family members, caregivers, or doctors to securely view your logs. Devices talk directly to each other over encrypted peer-to-peer connections. No central server holds your records.",
+    },
+    {
+      question: "Who controls the app?",
+      answer:
+        "The community does. The core experience is guided by a community voting process, not a boardroom. Groups of users are also free to fork the codebase and build specialized versions for Type 1 teens, seniors, or any specific group.",
+    },
+    {
+      question: "How do I contribute to the project?",
+      answer:
+        "The best way to start is to join our community and share your wishlist: the features you need, the workflows that would actually fit your life, and the designs that make sense to you. Developers interested in contributing to the codebase can reach out directly.",
+    },
+    {
+      question: "When will the app be available?",
+      answer:
+        "The technical foundation is in place. We are now in the community-building phase: gathering feedback, feature wishlists, and design input from diabetics worldwide. Follow us to stay updated.",
+    },
+  ],
+};
+---
+
+<MainLayout
+  title={pageTitle}
+  meta="A totally new diabetes companion app built by a diabetic, for diabetics. Offline-first, private AI, community-governed, and community-driven."
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://nep.work/the-diabetes-app",
+    url: "https://nep.work/the-diabetes-app",
+    name: "The Diabetes App",
+    description:
+      "An offline-first, private, community-driven diabetes companion app. Built by diabetics, for diabetics.",
+    isPartOf: {
+      "@type": "WebSite",
+      url: "https://nep.work",
+      name: SITE.title,
+    },
+    inLanguage: "en-US",
+  }}
+>
+  <!-- Hero -->
+  <section class="mx-auto max-w-[85rem] px-4 pb-10 pt-16 sm:px-6 lg:px-8 2xl:max-w-full">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+        A Trust Network for Diabetes Care
+      </span>
+      <h1 class="mt-6 text-balance text-4xl font-bold tracking-tight text-neutral-800 dark:text-neutral-200 sm:text-5xl lg:text-6xl lg:leading-tight">
+        A Diabetes Companion<br />
+        <span class="text-orange-400 dark:text-orange-300">That Never Quits</span>
+      </h1>
+      <p class="mx-auto mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
+        Full logging, bolus calculators, a private on-device AI, and your care circle. All of it runs on your phone, even with no signal. Your data stays yours.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="https://github.com/risavkarna"
+          class="inline-flex items-center gap-2 rounded-lg bg-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-400"
+        >
+          Join the Community
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a
+          href="#features"
+          class="inline-flex items-center gap-2 rounded-lg border border-neutral-300 bg-white px-6 py-3 text-sm font-semibold text-neutral-700 shadow-sm transition hover:bg-neutral-50 dark:border-neutral-600 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700"
+        >
+          See How It Works
+        </a>
+      </div>
+      <!-- Feature badges -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3 text-sm text-neutral-500 dark:text-neutral-400">
+        {[
+          { icon: "📡", label: "100% Offline" },
+          { icon: "🔒", label: "Private On-Device AI" },
+          { icon: "🫂", label: "Trust Network" },
+          { icon: "🧩", label: "Plugin Marketplace" },
+          { icon: "🗳️", label: "Community Governed" },
+        ].map(({ icon, label }) => (
+          <span class="flex items-center gap-1.5 rounded-full bg-neutral-100 px-3 py-1 dark:bg-neutral-800">
+            <span>{icon}</span>
+            <span>{label}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Three core differentiators as interactive tabs -->
+  <div id="features">
+    <FeaturesNavs
+      title={`Different by design. <span class="text-orange-400 dark:text-orange-300">On purpose.</span>`}
+      tabs={[
+        {
+          heading: "Works Everywhere, Always",
+          content:
+            "Most health apps break the moment you lose signal. The Diabetes App is offline-first by design. Your logbook, bolus calculator, and medication reminders work in the wilderness, on a plane, or anywhere your phone has no connection.",
+          svg: "earth",
+          src: logbookImg,
+          alt: "Diabetes logbook showing daily entries for blood glucose, insulin, and carbs with no internet required",
+          first: true,
+        },
+        {
+          heading: "AI That Keeps Your Secrets",
+          content:
+            "Instead of sending your health questions to a cloud server, our AI assistant runs directly on your phone. Ask it about carb counts, understand your glucose trends, and get insights. None of your data leaves your device.",
+          svg: "dashboard",
+          src: dashboardImg,
+          alt: "Dashboard showing blood glucose graph, HbA1c estimate, and daily stats powered by on-device AI",
+          second: true,
+        },
+        {
+          heading: "Your Private Care Circle",
+          content:
+            "Stop emailing spreadsheets to your doctor. The Trust Network lets your phones talk directly to each other. You share what you choose with family, caregivers, and your medical team. No company reads your records in between.",
+          svg: "groups",
+          src: reportImg,
+          alt: "Detailed weekly diabetes report shared securely with a doctor via the Trust Network",
+        },
+      ]}
+    />
+  </div>
+
+  <!-- Feature grid -->
+  <FeaturesGeneral
+    title="Everything you need. Nothing you don't."
+    subTitle="The Diabetes App is built around the real daily life of managing diabetes. Not around a business model that profits from your data."
+    features={features}
+  />
+
+  <!-- P2P section -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
+
+    <!-- Why P2P matters: cloud vs P2P contrast -->
+    <div class="mb-14 text-center">
+      <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+        Peer-to-Peer Architecture
+      </span>
+      <h2 class="mt-4 text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+        Your health diary shouldn't live on<br class="hidden md:block" />
+        <span class="text-orange-400 dark:text-orange-300">a stranger's server</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-pretty text-neutral-600 dark:text-neutral-400">
+        Most health apps are a business first. Your glucose readings, insulin doses, and meal logs are the product. They get stored, analyzed, and potentially sold by a for-profit company. When their servers go down, get breached, or the company shuts down, your most private health history either disappears or gets exposed. This app works differently.
+      </p>
+    </div>
+
+    <div class="grid gap-4 md:grid-cols-2">
+      <!-- Cloud apps: the risks -->
+      <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 dark:border-neutral-700 dark:bg-neutral-900">
+        <p class="mb-5 text-sm font-semibold uppercase tracking-wider text-neutral-400 dark:text-neutral-500">Traditional Cloud Health Apps</p>
+        <ul class="space-y-4">
+          {[
+            ["Your data on corporate servers, permanently", "Breaches expose your most sensitive health history to the world"],
+            ["Privacy policies change at will", "What's \"private\" today can be sold to insurers or advertisers tomorrow"],
+            ["App shuts down = your data vanishes", "Dozens of health apps have closed, leaving users with no export and no warning"],
+            ["Works only when the internet does", "A dead zone while hiking means no bolus calculator and no reminders"],
+            ["You are the product", "Free apps need revenue; your health patterns are the only asset they have"],
+          ].map(([title, detail]) => (
+            <li class="flex items-start gap-3">
+              <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><path d="m15 9-6 6M9 9l6 6"/>
+              </svg>
+              <div>
+                <p class="font-medium text-neutral-700 dark:text-neutral-300">{title}</p>
+                <p class="mt-0.5 text-sm text-neutral-500 dark:text-neutral-500">{detail}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- P2P: the guarantee -->
+      <div class="rounded-2xl border border-orange-200 bg-orange-50 p-8 dark:border-orange-400/20 dark:bg-orange-400/5">
+        <p class="mb-5 text-sm font-semibold uppercase tracking-wider text-orange-500 dark:text-orange-400">The Diabetes App: Peer-to-Peer</p>
+        <ul class="space-y-4">
+          {[
+            ["Data lives only on your devices", "Nothing is uploaded. Your logs exist on your phone, and on the phones of people you choose to trust."],
+            ["You decide every share, every time", "The Trust Network connects devices directly. No middleman reads your records in transit or at rest."],
+            ["Community-governed, not corporate-owned", "No company can shut it down, change the terms, or delete your history. Governance belongs to the community of diabetics who use it."],
+            ["Fully offline, always", "The core app runs on your hardware. No signal, no subscription, no expiry."],
+            ["You are the owner", "There is no business model built on your body. The only beneficiary of your health data is you."],
+          ].map(([title, detail]) => (
+            <li class="flex items-start gap-3">
+              <svg class="mt-0.5 h-5 w-5 flex-shrink-0 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              <div>
+                <p class="font-medium text-neutral-700 dark:text-neutral-300">{title}</p>
+                <p class="mt-0.5 text-sm text-neutral-500 dark:text-neutral-500">{detail}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- P2P fabric = plugin marketplace -->
+    <div class="mt-16">
+      <div class="mb-10 text-center">
+        <h2 class="text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+          The P2P fabric powers a marketplace<br class="hidden md:block" />
+          <span class="text-orange-400 dark:text-orange-300">built for your diabetes</span>
+        </h2>
+        <p class="mx-auto mt-4 max-w-2xl text-pretty text-neutral-600 dark:text-neutral-400">
+          Diabetes rarely comes alone. The same peer-to-peer network that keeps your data private also distributes plugins: no central gatekeeper, no single point of failure. Coaches, clinics, and community developers publish directly to you. Add exactly what your health requires and nothing you don't.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {[
+          { emoji: "🩺", name: "Blood Pressure", detail: "Log systolic/diastolic alongside glucose. Spot patterns between hypertension and BG spikes." },
+          { emoji: "🫀", name: "Heart Health", detail: "Track resting heart rate, HRV, and cardiovascular risk markers over time." },
+          { emoji: "🫁", name: "Kidney Health", detail: "Log eGFR results and spot nephropathy risk trends before they become critical." },
+          { emoji: "👁️", name: "Eye Health", detail: "Retinopathy check reminders and vision-change logs linked to your glucose history." },
+          { emoji: "🦶", name: "Neuropathy", detail: "Daily foot-check prompts and nerve-symptom logging with severity tracking." },
+          { emoji: "💊", name: "Cholesterol & Lipids", detail: "Track LDL, HDL, and triglycerides alongside your metabolic panel over time." },
+          { emoji: "⚖️", name: "Weight & Body Comp", detail: "BMI, waist circumference, and body-fat trends correlated with glucose control." },
+          { emoji: "😴", name: "Sleep Quality", detail: "Log sleep duration and quality—poor sleep is a major hidden driver of insulin resistance." },
+          { emoji: "🧠", name: "Mental Health", detail: "Track diabetes burnout, anxiety, and depression. Emotional health is physical health." },
+          { emoji: "🏃", name: "Sport & Exercise", detail: "Sport-specific glucose management playbooks from certified diabetes exercise coaches." },
+        ].map(({ emoji, name, detail }) => (
+          <div class="group rounded-xl border border-neutral-200 bg-white p-5 transition hover:border-orange-200 hover:shadow-md dark:border-neutral-700 dark:bg-neutral-800 dark:hover:border-orange-400/30">
+            <span class="text-3xl">{emoji}</span>
+            <p class="mt-3 font-semibold text-neutral-800 dark:text-neutral-200">{name}</p>
+            <p class="mt-1 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{detail}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="mt-6 text-center text-sm text-neutral-500 dark:text-neutral-500">
+        Plugins are distributed peer-to-peer and verified by the community—no corporate store approval, no surveillance, no lock-in.
+      </p>
+    </div>
+  </section>
+
+  <!-- Community vision section -->
+  <section
+    class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full"
+  >
+    <div
+      class="rounded-2xl bg-neutral-100 px-8 py-12 dark:bg-white/[.05] md:px-16 md:py-16"
+    >
+      <div class="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
+        <div>
+          <h2
+            class="text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight"
+          >
+            We build it together. <span class="text-orange-400 dark:text-orange-300"
+              >Customize it individually.</span
+            >
+          </h2>
+          <p class="mt-4 text-pretty text-neutral-600 dark:text-neutral-400">
+            The technical foundation is built. Now it needs to be shaped by the
+            people who will actually live with it. We are looking for diabetics
+            around the world to help design, test, and guide what this app
+            becomes. Your involvement is what makes it yours: the features, the
+            workflows, the plugins. The app will fit your life because you helped build it.
+          </p>
+          <ul class="mt-6 space-y-3">
+            {
+              [
+                "Share your feature wishlist and daily workflow",
+                "Vote on the core app experience through open community process",
+                "Fork the code and build a version for your community",
+                "Partner with clinics, coaches, and nonprofits to add real care integrations",
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-neutral-700 dark:text-neutral-300">
+                  <svg
+                    class="mt-0.5 h-5 w-5 flex-shrink-0 text-orange-400"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          {
+            [
+              { count: "24/7", label: "App works offline—always" },
+              { count: "100%", label: "Your data stays on your device" },
+              { count: "0", label: "Corporate servers touching your logs" },
+              { count: "∞", label: "Community forks and variants" },
+            ].map(({ count, label }) => (
+              <div class="rounded-xl bg-white p-6 shadow-sm dark:bg-neutral-800">
+                <p class="text-4xl font-bold text-orange-400 dark:text-orange-300">
+                  {count}
+                </p>
+                <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+                  {label}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ
+    title={`Frequently Asked<br/>Questions`}
+    faqs={faqs}
+  />
+
+  <!-- Final CTA -->
+  <HeroSectionAlt
+    title="Let's Build It Together"
+    subTitle="The Diabetes App is community-governed and community-driven. If you're a diabetic with opinions, a designer with ideas, or a developer with skills—we want you."
+    url="https://github.com/risasvkarna"
+  />
+</MainLayout>
