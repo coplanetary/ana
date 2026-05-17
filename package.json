@@ -60,5 +60,8 @@
     "bun-types": "latest",
     "nx": "19.0.5"
   },
-  "nx": {}
+  "nx": {},
+  "engines": {
+    "node": ">=20.x"
+  }
 }

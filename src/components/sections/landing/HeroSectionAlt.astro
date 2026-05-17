@@ -3,7 +3,7 @@
 import GithubBtn from "@components/ui/buttons/GithubBtn.astro";
 
 // Define props from Astro
-const { title, subTitle, url } = Astro.props;
+const { title, subTitle, url, ctaLabel } = Astro.props;
 
 const btnTitle = Astro.currentLocale === "fr" ? "Continuer avec Github" : "Continue with Github";
 
@@ -12,6 +12,7 @@ interface Props {
   title: string;
   subTitle?: string;
   url?: string;
+  ctaLabel?: string;
 }
 ---
 
@@ -134,11 +135,21 @@ interface Props {
       )
     }
   </div>
-  <!-- Github Button -->
+  <!-- CTA Button -->
   {
     url && (
       <div class="mt-8 flex justify-center gap-3">
-        <GithubBtn url={url} title={btnTitle}/>
+        {ctaLabel ? (
+          <a
+            href={url}
+            class="inline-flex items-center gap-2 rounded-lg bg-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-400"
+          >
+            {ctaLabel}
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        ) : (
+          <GithubBtn url={url} title={btnTitle}/>
+        )}
       </div>
     )
   }
