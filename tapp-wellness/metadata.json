@@ -1,0 +1,6 @@
+{
+  "name": "TApp Wellness",
+  "description": "A custom sovereign P2P wellness application for continuous glucose monitoring, healthy localized diet logging, and clinician-prescribed checklists in Nepal.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,27 +1,23 @@
 ---
 import MainLayout from "@/layouts/MainLayout.astro";
 import HeroSectionAlt from "@components/sections/landing/HeroSectionAlt.astro";
-import FeaturesNavs from "@components/sections/features/FeaturesNavs.astro";
 import FeaturesGeneral from "@components/sections/features/FeaturesGeneral.astro";
 import FAQ from "@components/sections/FAQ.astro";
 import { SITE } from "@data/constants";
-import logbookImg from "@images/diabetes/app-logbook.jpg";
-import dashboardImg from "@images/diabetes/app-dashboard.webp";
-import reportImg from "@images/diabetes/app-report.webp";
 
 const pageTitle = `The Diabetes App | ${SITE.title}`;
 
 const features = [
   {
-    heading: "Daily Logging",
+    heading: "Take-a-Picture Logging",
     content:
-      "Log blood glucose, insulin, carbs, medications, and exercise in seconds. Every entry stays on your device. No accounts, no cloud uploads.",
+      "Snap your glucometer, a lab report, a meal, or a medication pack. The on-device AI drafts a structured entry that you review and confirm. Logging that takes seconds, not minutes.",
     svg: "dashboardFeature",
   },
   {
     heading: "100% Offline",
     content:
-      "Bolus calculators, reminders, and all your logs work with zero cell service. Hiking, traveling, camping somewhere remote. It keeps working.",
+      "Logging, reminders, trends, and the AI assistant all work with zero cell service. Hiking, traveling, camping somewhere remote. It keeps working.",
     svg: "globe",
   },
   {
@@ -57,12 +53,32 @@ const faqs = {
     {
       question: "Will the app really work with no internet connection?",
       answer:
-        "Yes. The core experience runs entirely on-device: logging, bolus calculator, medication reminders, and the AI assistant. Internet is only used for optional features like syncing with your Trust Network or updating plugins.",
+        "Yes. The core experience runs entirely on-device: logging, Take-a-Picture capture, medication reminders, trend charts, and the AI assistant. Internet is only used for optional features like syncing with your Trust Network or updating plugins.",
+    },
+    {
+      question: "What is “Take-a-Picture” capture?",
+      answer:
+        "Instead of typing everything by hand, you photograph the source: a glucometer display, a lab report PDF, a meal, or a medication package. The on-device AI reads the image and suggests a structured entry. You always verify and edit the value before it is saved—the AI never records anything on its own. The raw photo is processed locally and never uploaded.",
+    },
+    {
+      question: "Does the app calculate my insulin dose?",
+      answer:
+        "No. By design, the app is a record-keeping and communication tool. It does not calculate or recommend insulin doses. All dosing and treatment decisions are made exclusively by your licensed physician—the app simply displays your doctor's guidance and logs what you actually did.",
     },
     {
       question: "How does the on-device AI work without the cloud?",
       answer:
-        "We use lightweight, quantized language models that run directly on modern smartphone hardware. Because the model lives on your phone, your health questions and personal data never leave your device. The AI also learns your individual patterns over time from your local data.",
+        "We use lightweight, quantized language models that run directly on modern smartphone hardware. Because the model lives on your phone, your health questions and personal data never leave your device. The AI is assistive only: it answers questions about your logged data and summarizes reports, but never makes medical decisions.",
+    },
+    {
+      question: "How does it work with my doctor and clinic?",
+      answer:
+        "There is a companion app for clinicians that connects to the same private network. With your permission, your logs and trends sync directly to your doctor's dashboard before a visit—so less time on paperwork and waiting, more time on actual care. Your doctor can attach notes and prescribe action checklists tied to specific readings.",
+    },
+    {
+      question: "Can it help me with labs, refills, and meals?",
+      answer:
+        "Yes. When your doctor adds a task—a blood test, a prescription refill, or a dietary goal—the app can turn it into a one-tap action routed to trusted local providers such as home blood-collection, pharmacy, and meal-delivery services. You review and approve every order; nothing is ever purchased automatically.",
     },
     {
       question: "What is the Trust Network?",
@@ -118,7 +134,7 @@ const faqs = {
         <span class="text-orange-400 dark:text-orange-300">That Never Quits</span>
       </h1>
       <p class="mx-auto mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-neutral-600 dark:text-neutral-400">
-        Full logging, bolus calculators, a private on-device AI, and your care circle. All of it runs on your phone, even with no signal. Your data stays yours.
+        Take-a-picture logging, a private on-device AI, doctor-guided care, and your trusted circle. All of it runs on your phone, even with no signal. Your data stays yours.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
@@ -153,40 +169,154 @@ const faqs = {
     </div>
   </section>
 
-  <!-- Three core differentiators as interactive tabs -->
-  <div id="features">
-    <FeaturesNavs
-      title={`Different by design. <span class="text-orange-400 dark:text-orange-300">On purpose.</span>`}
-      tabs={[
-        {
-          heading: "Works Everywhere, Always",
-          content:
-            "Most health apps break the moment you lose signal. The Diabetes App is offline-first by design. Your logbook, bolus calculator, and medication reminders work in the wilderness, on a plane, or anywhere your phone has no connection.",
-          svg: "earth",
-          src: logbookImg,
-          alt: "Diabetes logbook showing daily entries for blood glucose, insulin, and carbs with no internet required",
-          first: true,
-        },
-        {
-          heading: "AI That Keeps Your Secrets",
-          content:
-            "Instead of sending your health questions to a cloud server, our AI assistant runs directly on your phone. Ask it about carb counts, understand your glucose trends, and get insights. None of your data leaves your device.",
-          svg: "dashboard",
-          src: dashboardImg,
-          alt: "Dashboard showing blood glucose graph, HbA1c estimate, and daily stats powered by on-device AI",
-          second: true,
-        },
-        {
-          heading: "Your Private Care Circle",
-          content:
-            "Stop emailing spreadsheets to your doctor. The Trust Network lets your phones talk directly to each other. You share what you choose with family, caregivers, and your medical team. No company reads your records in between.",
-          svg: "groupsTab",
-          src: reportImg,
-          alt: "Detailed weekly diabetes report shared securely with a doctor via the Trust Network",
-        },
-      ]}
-    />
-  </div>
+  <!-- Live interactive preview -->
+  <section id="features" class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+        Live Interactive Preview
+      </span>
+      <h2 class="mt-4 text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+        Don't take our word for it.<br class="hidden md:block" />
+        <span class="text-orange-400 dark:text-orange-300">Try the app right here.</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-pretty text-neutral-600 dark:text-neutral-400">
+        Below is a real, in-browser prototype of the app from our first pilot, designed hand-in-hand with clinics and patients. Tap the scenario buttons to walk through all twelve screens: glucose trends, Take-a-Picture capture, doctor-prescribed actions, the privacy controls, and more. It runs entirely in your browser. Nothing you tap leaves this page.
+      </p>
+    </div>
+
+    <!-- Embedded prototype -->
+    <div class="mt-10 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 shadow-sm dark:border-neutral-700 dark:bg-neutral-900">
+      <!-- Faux browser chrome -->
+      <div class="flex items-center gap-2 border-b border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-700 dark:bg-neutral-800">
+        <span class="h-3 w-3 rounded-full bg-red-400"></span>
+        <span class="h-3 w-3 rounded-full bg-yellow-400"></span>
+        <span class="h-3 w-3 rounded-full bg-green-400"></span>
+        <span class="ml-3 flex items-center gap-1.5 text-xs font-medium text-neutral-400 dark:text-neutral-500">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          TApp Wellness · interactive prototype
+        </span>
+      </div>
+      <iframe
+        src="/tapp-preview/index.html"
+        title="The Diabetes App — interactive prototype"
+        loading="lazy"
+        class="h-[760px] w-full border-0 bg-[#eaefed] md:h-[860px]"
+      ></iframe>
+    </div>
+    <p class="mt-3 text-center text-sm text-neutral-500 dark:text-neutral-500">
+      Prototype shown for demonstration. <a href="/tapp-preview/index.html" target="_blank" rel="noopener" class="font-medium text-orange-500 underline-offset-2 hover:underline">Open it full-screen →</a>
+    </p>
+  </section>
+
+  <!-- Take-a-Picture -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+        Take-a-Picture
+      </span>
+      <h2 class="mt-4 text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+        Logging diabetes is tedious.<br class="hidden md:block" />
+        <span class="text-orange-400 dark:text-orange-300">So just take a picture.</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-pretty text-neutral-600 dark:text-neutral-400">
+        Manual entry is the main reason people stop tracking. The Diabetes App removes that friction: point your camera at the source and the on-device AI drafts a structured entry for you. You always review and confirm before anything is saved. The AI assists, it never decides. And because everything runs on your phone, the photo never touches a server.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {[
+        { emoji: "🩸", name: "Glucometer readings", detail: "Photograph the display and the AI reads the number off the screen into a time-stamped log. You confirm the value." },
+        { emoji: "📄", name: "Lab reports", detail: "Snap an HbA1c, lipid, or eGFR report. Key values are extracted into trends—without you typing a single figure." },
+        { emoji: "🍛", name: "Meals", detail: "Capture a plate and get a simple glycemic color cue—green, amber, red—not a fake calorie count you can't trust." },
+        { emoji: "💉", name: "Medication", detail: "Log a pill or an insulin pen with a quick photo, creating an honest, time-stamped adherence record for your doctor." },
+      ].map(({ emoji, name, detail }) => (
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+          <span class="text-3xl">{emoji}</span>
+          <p class="mt-3 font-semibold text-neutral-800 dark:text-neutral-200">{name}</p>
+          <p class="mt-1.5 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{detail}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Inversion of control: care that comes to you -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
+      <div>
+        <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+          Care That Comes To You
+        </span>
+        <h2 class="mt-4 text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+          Stop traveling for routine care.<br class="hidden md:block" />
+          <span class="text-orange-400 dark:text-orange-300">Bring it home instead.</span>
+        </h2>
+        <p class="mt-4 text-pretty text-neutral-600 dark:text-neutral-400">
+          Managing diabetes shouldn't mean losing a day to a clinic queue every time you need a lab, a refill, or the right groceries. When your doctor sets a task, the app turns it into a one-tap action routed to trusted local services—so the lab, the pharmacy, and the meal come to your door. Physical visits are saved for the conversations that actually need a doctor in the room.
+        </p>
+        <p class="mt-4 text-sm text-neutral-500 dark:text-neutral-500">
+          You review and approve every single action. The app never orders anything on its own.
+        </p>
+      </div>
+
+      <div class="grid gap-4">
+        {[
+          { icon: "🧪", title: "Home lab collection", detail: "A doctor's request for an HbA1c or lipid panel becomes a home visit by a licensed, cold-chain-capable phlebotomy service. No fasting in a waiting room." },
+          { icon: "💊", title: "Pharmacy refills", detail: "An expiring prescription becomes a refill order to a partnered pharmacy, with the doctor's instructions attached—approved by you in one tap." },
+          { icon: "🥗", title: "Doctor-approved meals", detail: "A dietary goal links straight to low-glycemic, locally relevant meal options from delivery partners, so eating well is the easy choice." },
+        ].map(({ icon, title, detail }) => (
+          <div class="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+            <span class="text-2xl">{icon}</span>
+            <div>
+              <p class="font-semibold text-neutral-800 dark:text-neutral-200">{title}</p>
+              <p class="mt-1 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Clinician side + safety -->
+  <section class="mx-auto max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-16 2xl:max-w-full">
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="inline-block rounded-full border border-orange-300 bg-orange-100 px-4 py-1 text-sm font-medium text-orange-600 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-300">
+        Your Doctor, In The Loop
+      </span>
+      <h2 class="mt-4 text-balance text-3xl font-bold text-neutral-800 dark:text-neutral-200 md:text-4xl md:leading-tight">
+        Built around your doctor,<br class="hidden md:block" />
+        <span class="text-orange-400 dark:text-orange-300">not around a server</span>
+      </h2>
+      <p class="mx-auto mt-4 max-w-2xl text-pretty text-neutral-600 dark:text-neutral-400">
+        Clinicians get a companion app that connects to the same private, peer-to-peer network. With your permission, your structured logs and trends sync straight to their dashboard—often before you even sit down. Less time transcribing paperwork, more time on care.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 md:grid-cols-3">
+      {[
+        ["Sync before the visit", "Your longitudinal data and AI-generated trend summaries populate your doctor's screen ahead of time, cutting intake and wait times dramatically."],
+        ["Make-a-Note", "Your clinician attaches observations and guidance directly to specific readings—like a recurring afternoon low—building a living record over time."],
+        ["Structured visit summaries", "After a visit, your doctor pushes a clean PDF summary and updated plan back to your phone over the encrypted connection. No insecure email, no lost spreadsheets."],
+      ].map(([title, detail]) => (
+        <div class="rounded-2xl border border-neutral-200 bg-white p-6 dark:border-neutral-700 dark:bg-neutral-800">
+          <p class="font-semibold text-neutral-800 dark:text-neutral-200">{title}</p>
+          <p class="mt-1.5 text-sm leading-relaxed text-neutral-500 dark:text-neutral-400">{detail}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Safety / no-dosing disclaimer -->
+    <div class="mt-8 flex items-start gap-4 rounded-2xl border border-orange-200 bg-orange-50 p-6 dark:border-orange-400/20 dark:bg-orange-400/5 md:p-8">
+      <svg class="mt-0.5 h-6 w-6 flex-shrink-0 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/>
+      </svg>
+      <div>
+        <p class="font-semibold text-neutral-800 dark:text-neutral-200">Doctor-led by design</p>
+        <p class="mt-1 text-pretty text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+          The Diabetes App is a record-keeping and communication tool. It does not calculate or recommend insulin doses, and the AI never makes a medical decision on its own. All treatment decisions stay with your licensed physician—the app simply keeps an honest record and makes their guidance easy to follow.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <!-- Feature grid -->
   <FeaturesGeneral
@@ -221,7 +351,7 @@ const faqs = {
             ["Your data on corporate servers, permanently", "Breaches expose your most sensitive health history to the world"],
             ["Privacy policies change at will", "What's \"private\" today can be sold to insurers or advertisers tomorrow"],
             ["App shuts down = your data vanishes", "Dozens of health apps have closed, leaving users with no export and no warning"],
-            ["Works only when the internet does", "A dead zone while hiking means no bolus calculator and no reminders"],
+            ["Works only when the internet does", "A dead zone while hiking means no logging, no trends, and no reminders"],
             ["You are the product", "Free apps need revenue; your health patterns are the only asset they have"],
           ].map(([title, detail]) => (
             <li class="flex items-start gap-3">
