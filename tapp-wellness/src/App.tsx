@@ -198,8 +198,9 @@ export default function App() {
         {/* Device + step indicator */}
         <div className="flex flex-col items-center gap-3">
 
-        {/* Device frame casing */}
-        <div className="relative w-full max-w-sm md:max-w-[390px] h-[780px] bg-white rounded-[40px] shadow-[0_15px_45px_rgba(13,148,136,0.06)] border-8 border-slate-800 flex flex-col overflow-hidden">
+        {/* Device frame casing — fit the viewport on mobile so the prev/next
+            controls below it stay visible without scrolling */}
+        <div className="relative w-full max-w-sm md:max-w-[390px] h-[80svh] max-h-[780px] md:h-[780px] bg-white rounded-[40px] shadow-[0_15px_45px_rgba(13,148,136,0.06)] border-8 border-slate-800 flex flex-col overflow-hidden">
           
           {/* Top Notch Area (Dynamic Island mockup) */}
           <div className="absolute top-0 inset-x-0 h-8 bg-slate-900 z-50 flex items-center justify-center">
@@ -374,12 +375,36 @@ export default function App() {
 
         </div>
 
-          {/* Step indicator — wide screens */}
+          {/* Step indicator label — wide screens */}
           <div className="hidden md:flex items-center gap-2 text-xs font-semibold text-slate-500">
             <span className="px-2 py-0.5 rounded-full bg-white border border-slate-200 tabular-nums">
               {Math.max(currentJumpIndex, 0) + 1} / {fastJumps.length}
             </span>
             <span>{currentJump?.label ?? ''}</span>
+          </div>
+
+          {/* Prev/next pill — mobile: in-flow under the phone so it never
+              overlaps the device's own bottom tab bar */}
+          <div className="md:hidden flex items-center gap-1 bg-white border border-slate-200 rounded-full shadow-md px-2 py-1.5">
+            <button
+              type="button"
+              onClick={() => goRelative(-1)}
+              aria-label="Previous screen"
+              className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <span className="text-[11px] font-bold text-slate-600 min-w-[52px] text-center px-1 tabular-nums">
+              {Math.max(currentJumpIndex, 0) + 1} / {fastJumps.length}
+            </span>
+            <button
+              type="button"
+              onClick={() => goRelative(1)}
+              aria-label="Next screen"
+              className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
           </div>
 
         </div>
@@ -393,29 +418,6 @@ export default function App() {
         >
           <ChevronRight className="w-6 h-6" />
         </button>
-
-        {/* Mobile floating prev/next controls — no room to flank a full-width phone */}
-        <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white/95 backdrop-blur border border-slate-200 rounded-full shadow-lg px-2 py-1.5">
-          <button
-            type="button"
-            onClick={() => goRelative(-1)}
-            aria-label="Previous screen"
-            className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <span className="text-[11px] font-bold text-slate-600 min-w-[52px] text-center px-1 tabular-nums">
-            {Math.max(currentJumpIndex, 0) + 1} / {fastJumps.length}
-          </span>
-          <button
-            type="button"
-            onClick={() => goRelative(1)}
-            aria-label="Next screen"
-            className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
 
       </section>
 
