@@ -20,7 +20,7 @@ import ScreenOnboarding from './components/ScreenOnboarding';
 import { ActiveScreen } from './types';
 import { 
   Heart, ShieldAlert, Sparkles, Smartphone, ShieldCheck, HelpCircle, 
-  Settings, Home, Activity, ShoppingBag, Shield, BellRing, ChevronRight, Lock, Laptop, CheckCircle
+  Settings, Home, Activity, ShoppingBag, Shield, BellRing, ChevronLeft, ChevronRight, Lock, Laptop, CheckCircle
 } from 'lucide-react';
 
 export default function App() {
@@ -55,6 +55,19 @@ export default function App() {
   const goToFastJump = (jump: (typeof fastJumps)[number]) => {
     if (jump.cameraMode) setCameraResultMode(jump.cameraMode);
     setActiveScreen(jump.screen);
+  };
+
+  // Where we are in the 13-screen story, so prev/next can step through it
+  // without scrolling back up to the fast-jump list.
+  const currentJumpIndex = fastJumps.findIndex(
+    j => j.screen === activeScreen && (j.screen !== 'camera' || j.cameraMode === cameraResultMode)
+  );
+  const currentJump = currentJumpIndex >= 0 ? fastJumps[currentJumpIndex] : null;
+
+  const goRelative = (delta: number) => {
+    if (currentJumpIndex < 0) return;
+    const len = fastJumps.length;
+    goToFastJump(fastJumps[(currentJumpIndex + delta + len) % len]);
   };
 
   const handleLaunchCamera = () => {
@@ -170,8 +183,21 @@ export default function App() {
       </section>
 
       {/* RIGHT: Pixel-Perfect High Contrast Phone Frame Chassis representation */}
-      <section className="flex-1 flex items-center justify-center p-4 md:p-6 bg-[#eaefed] overflow-y-auto">
-        
+      <section className="relative flex-1 flex items-center justify-center gap-2 md:gap-5 p-4 md:p-6 bg-[#eaefed] overflow-y-auto">
+
+        {/* Prev screen — flanks the device on wide screens */}
+        <button
+          type="button"
+          onClick={() => goRelative(-1)}
+          aria-label="Previous screen"
+          className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-full bg-white text-[#0d9488] shadow-md border border-teal-100 hover:bg-teal-50 active:scale-95 transition-all"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+
+        {/* Device + step indicator */}
+        <div className="flex flex-col items-center gap-3">
+
         {/* Device frame casing */}
         <div className="relative w-full max-w-sm md:max-w-[390px] h-[780px] bg-white rounded-[40px] shadow-[0_15px_45px_rgba(13,148,136,0.06)] border-8 border-slate-800 flex flex-col overflow-hidden">
           
@@ -346,6 +372,49 @@ export default function App() {
             <div className="w-28 h-1 bg-neutral-900 rounded-full" />
           </div>
 
+        </div>
+
+          {/* Step indicator — wide screens */}
+          <div className="hidden md:flex items-center gap-2 text-xs font-semibold text-slate-500">
+            <span className="px-2 py-0.5 rounded-full bg-white border border-slate-200 tabular-nums">
+              {Math.max(currentJumpIndex, 0) + 1} / {fastJumps.length}
+            </span>
+            <span>{currentJump?.label ?? ''}</span>
+          </div>
+
+        </div>
+
+        {/* Next screen — flanks the device on wide screens */}
+        <button
+          type="button"
+          onClick={() => goRelative(1)}
+          aria-label="Next screen"
+          className="hidden md:flex flex-shrink-0 w-12 h-12 items-center justify-center rounded-full bg-white text-[#0d9488] shadow-md border border-teal-100 hover:bg-teal-50 active:scale-95 transition-all"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Mobile floating prev/next controls — no room to flank a full-width phone */}
+        <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 bg-white/95 backdrop-blur border border-slate-200 rounded-full shadow-lg px-2 py-1.5">
+          <button
+            type="button"
+            onClick={() => goRelative(-1)}
+            aria-label="Previous screen"
+            className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <span className="text-[11px] font-bold text-slate-600 min-w-[52px] text-center px-1 tabular-nums">
+            {Math.max(currentJumpIndex, 0) + 1} / {fastJumps.length}
+          </span>
+          <button
+            type="button"
+            onClick={() => goRelative(1)}
+            aria-label="Next screen"
+            className="w-10 h-10 flex items-center justify-center rounded-full text-[#0d9488] hover:bg-teal-50 active:scale-95 transition-all"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
 
       </section>

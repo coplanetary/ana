@@ -5,6 +5,23 @@
 
 import { Reading, Meal, Task, Connection, Plugin } from './types';
 
+// Images are bundled locally (downloaded from Unsplash) so the prototype is
+// fully self-contained and offline — no hot-linking that can 404 mid-demo.
+// Vite fingerprints these and emits them under the app's asset directory.
+import curaPhlebotomy from './assets/marketplace/cura-phlebotomy.jpg';
+import foodmanduSalad from './assets/marketplace/foodmandu-salad.jpg';
+import metabolicYoga from './assets/marketplace/metabolic-yoga.jpg';
+import cgmSensor from './assets/marketplace/cgm-sensor.jpg';
+import himalayanGrains from './assets/marketplace/himalayan-grains.jpg';
+import labDiagnostics from './assets/marketplace/lab-diagnostics.jpg';
+import smartScale from './assets/marketplace/smart-scale.jpg';
+import milletPorridge from './assets/marketplace/millet-porridge.jpg';
+
+// Self-contained placeholder shown when a hot-linked image fails to load, so
+// the demo never surfaces broken alt text. Inline SVG = no network needed.
+export const imageFallback =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ccfbf1'/%3E%3Cstop offset='1' stop-color='%2399f6e4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='600' height='400' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%230d9488' stroke-width='14' stroke-linecap='round' stroke-linejoin='round' opacity='0.45'%3E%3Crect x='230' y='148' width='140' height='104' rx='14'/%3E%3Ccircle cx='268' cy='184' r='13'/%3E%3Cpath d='M242 240l44-38 32 27 26-21 32 32'/%3E%3C/g%3E%3C/svg%3E";
+
 export const readingHistory: Reading[] = [
   {
     id: 'r1',
@@ -50,7 +67,7 @@ export const foodmanduMenu: Meal[] = [
     glycemicRating: 'Green',
     isNepaliSpecialty: true,
     imageAlt: 'Authentic Buckwheat Dhido served with organic rayo ko saag mustard greens',
-    imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600', // Beautiful salad/food image as hotlink placeholder
+    imageUrl: foodmanduSalad,
     description: 'Authentic Himalayan buckwheat mash served with spicy sautéed mountain rayo ko saag and traditional organic gundruk soup.'
   },
   {
@@ -63,7 +80,7 @@ export const foodmanduMenu: Meal[] = [
     fiber: '9g Fiber',
     glycemicRating: 'Green',
     imageAlt: 'Millet porridge topped with roasted walnuts and mountain honey',
-    imageUrl: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&q=80&w=600', // Grain porridge oatmeal placeholder
+    imageUrl: milletPorridge,
     description: 'Warm, slow-cooked organic red millet (Kodo ko khero) porridge topped with premium hand-cracked walnuts and local cardamom honey.'
   }
 ];
@@ -126,7 +143,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Cura Health Home Phlebotomy & HbA1c',
     provider: 'Cura Health Nepal',
     priceTag: 'Rs. 1,200 / session',
-    imageUrl: 'https://images.unsplash.com/photo-1579684389782-64d84b5e901a?auto=format&fit=crop&q=80&w=600',
+    imageUrl: curaPhlebotomy,
     imageAlt: 'Cura health professional doing blood draw at home in Kathmandu',
     isTrending: true,
     category: 'clinics'
@@ -136,7 +153,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Foodmandu Diabetes-Safe Lunch Plan',
     provider: 'Foodmandu',
     priceTag: 'Rs. 5,500 / month',
-    imageUrl: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600',
+    imageUrl: foodmanduSalad,
     imageAlt: 'Foodmandu healthy low-glycemic medical menu subscription package',
     isTrending: true,
     category: 'nutrition'
@@ -146,7 +163,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Metabolic Yoga & Kundalini Breathing',
     provider: 'Aarogyam Yoga Pathshala',
     priceTag: 'Rs. 4,000 / month',
-    imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=600',
+    imageUrl: metabolicYoga,
     imageAlt: 'Traditional yoga session with breathing exercises in Kathmandu',
     category: 'coaches'
   },
@@ -155,7 +172,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Siddhartha 14-Day CGM Sensor Pack',
     provider: 'Siddhartha Medical Devices',
     priceTag: 'Rs. 9,400',
-    imageUrl: 'https://images.unsplash.com/photo-1510017808632-95f08e030633?auto=format&fit=crop&q=80&w=600',
+    imageUrl: cgmSensor,
     imageAlt: 'Wearable health tracking continuous glucose monitor sensor device',
     category: 'devices'
   },
@@ -164,7 +181,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Organic Phapar & Kodo Flour Bundle (5kg)',
     provider: 'Mustang Agro-Foods',
     priceTag: 'Rs. 1,600',
-    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600',
+    imageUrl: himalayanGrains,
     imageAlt: 'Himalayan organic grains and high altitude buckwheat',
     category: 'nutrition'
   },
@@ -173,7 +190,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Kanti Endocrinology Diagnostic Suite',
     provider: 'Kanti Health Labs, Lalitpur',
     priceTag: 'Rs. 3,500 / panel',
-    imageUrl: 'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=600',
+    imageUrl: labDiagnostics,
     imageAlt: 'Medical lab diagnostics equipment suite',
     category: 'clinics'
   },
@@ -182,7 +199,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Bajra Phapar-ko-Roti Daily Morning Delivery',
     provider: 'Bajra Bakery, Patan',
     priceTag: 'Rs. 350 / day',
-    imageUrl: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600',
+    imageUrl: himalayanGrains,
     imageAlt: 'Fresh high fiber buckwheat flatbread breakfast delivered to home',
     category: 'nutrition'
   },
@@ -191,7 +208,7 @@ export const marketplacePlugins: Plugin[] = [
     name: 'Nepal Diabetic-Care Smart Scale',
     provider: 'Siddhartha Medical Devices',
     priceTag: 'Rs. 4,800',
-    imageUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600',
+    imageUrl: smartScale,
     imageAlt: 'Clinically calibrated body mass smart scale with Bluetooth connection',
     category: 'devices'
   }

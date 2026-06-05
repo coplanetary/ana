@@ -184,8 +184,8 @@ const faqs = {
       </p>
     </div>
 
-    <!-- Embedded prototype -->
-    <div class="mt-10 overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 shadow-sm dark:border-neutral-700 dark:bg-neutral-900">
+    <!-- Embedded prototype (desktop only — the prototype is a wide two-pane layout) -->
+    <div class="mt-10 hidden overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-50 shadow-sm dark:border-neutral-700 dark:bg-neutral-900 md:block">
       <!-- Faux browser chrome -->
       <div class="flex items-center gap-2 border-b border-neutral-200 bg-white px-4 py-2.5 dark:border-neutral-700 dark:bg-neutral-800">
         <span class="h-3 w-3 rounded-full bg-red-400"></span>
@@ -203,7 +203,26 @@ const faqs = {
         class="h-[760px] w-full border-0 bg-[#eaefed] md:h-[860px]"
       ></iframe>
     </div>
-    <p class="mt-3 text-center text-sm text-neutral-500 dark:text-neutral-500">
+
+    <!-- Mobile: open the prototype as its own page instead of cramming the wide layout into an iframe -->
+    <a
+      href="/tapp-preview/index.html"
+      class="mt-10 flex flex-col items-center gap-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-8 text-center shadow-sm transition hover:border-orange-300 active:scale-[0.99] dark:border-neutral-700 dark:bg-neutral-900 md:hidden"
+    >
+      <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-100 text-orange-500 dark:bg-orange-400/10 dark:text-orange-300">
+        <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+      </span>
+      <span>
+        <span class="block font-semibold text-neutral-800 dark:text-neutral-200">Launch the interactive prototype</span>
+        <span class="mt-1 block text-sm text-neutral-500 dark:text-neutral-400">Opens the full TApp Wellness demo on its own screen. Walk through all twelve screens, then use your back button to return.</span>
+      </span>
+      <span class="inline-flex items-center gap-2 rounded-lg bg-orange-400 px-6 py-3 text-sm font-semibold text-white shadow-sm">
+        Open the prototype
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <p class="mt-3 hidden text-center text-sm text-neutral-500 dark:text-neutral-500 md:block">
       Prototype shown for demonstration. <a href="/tapp-preview/index.html" target="_blank" rel="noopener" class="font-medium text-orange-500 underline-offset-2 hover:underline">Open it full-screen →</a>
     </p>
   </section>

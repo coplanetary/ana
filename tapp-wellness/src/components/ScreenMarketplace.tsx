@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { marketplacePlugins } from '../mockData';
+import { marketplacePlugins, imageFallback } from '../mockData';
 import { Search, ChevronRight, Sparkles, Star, CheckCircle, Info } from 'lucide-react';
 
 interface ScreenMarketplaceProps {
@@ -106,9 +106,11 @@ export default function ScreenMarketplace({ onNavigate }: ScreenMarketplaceProps
               >
                 {/* Visual placeholder with tag */}
                 <div className="h-44 rounded-lg overflow-hidden relative mb-4">
-                  <img 
-                    src={plugin.imageUrl} 
-                    alt={plugin.imageAlt} 
+                  <img
+                    src={plugin.imageUrl}
+                    alt={plugin.imageAlt}
+                    loading="lazy"
+                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = imageFallback; }}
                     className="w-full h-full object-cover"
                   />
                   {plugin.isTrending && (
